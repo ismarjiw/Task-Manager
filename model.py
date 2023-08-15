@@ -14,7 +14,7 @@ class Task(db.Model):
 
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(300))
-    due_date = db.Column(db.DateTime, nullable=False)
+    due_date = db.Column(db.DateTime)
     status = db.Column(db.String(20), default='To Do')
 
     def __repr__(self):

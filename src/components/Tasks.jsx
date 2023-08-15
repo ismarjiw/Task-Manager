@@ -8,6 +8,7 @@ export default function Tasks() {
             try {
                 const response = await fetch('/tasks');
                 const data = await response.json();
+                console.log('Fetched tasks:', data);
                 setTasks(data);
             } catch (error) {
                 console.error('Error fetching tasks:', error);
