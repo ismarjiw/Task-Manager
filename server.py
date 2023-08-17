@@ -31,7 +31,6 @@ def show_task(task_id):
     """Show details on a particular task."""
     
     task = crud.get_task_by_id(task_id)
-    print(task)
     task_json = [{"id": task.task_id, "title": task.title, "description": task.description, "due_date": task.due_date, "status": task.status}]
 
     return jsonify(task_json)
@@ -41,7 +40,6 @@ def create_task():
     """Create a new task."""
 
     data = request.json
-    print(data)
     title = data.get("title")
     description = data.get("description")
     due_date_str = data.get("dueDate")
