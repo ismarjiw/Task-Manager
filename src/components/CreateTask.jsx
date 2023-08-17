@@ -3,13 +3,14 @@ import { useState } from 'react';
 export default function CreateTask() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [dueDate, setDueDate] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
     async function handleSubmit(e) {
         e.preventDefault();
 
-        const taskData = { title, description };
+        const taskData = { title, description, dueDate };
         const baseUrl = "http://localhost:5000"
         try {
             const response = await fetch(`${baseUrl}/tasks`, {
@@ -52,12 +53,37 @@ export default function CreateTask() {
             <form onSubmit={handleSubmit}>
                 <label>
                     Title:
-                    <input id="title" type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} aria-label="Title" />
+                    <input 
+                        id="title" 
+                        type="text" 
+                        name="title" 
+                        value={title} 
+                        onChange={(e) => setTitle(e.target.value)} 
+                        aria-label="Title" 
+                    />
                 </label>
                 <br />
                 <label>
                     Description:
-                    <input id="description" type="text" name="description" value={description} onChange={(e) => setDescription(e.target.value)} aria-label="Description"/>
+                    <input 
+                        id="description" 
+                        type="text" 
+                        name="description" 
+                        value={description} 
+                        onChange={(e) => setDescription(e.target.value)} 
+                        aria-label="Description"
+                    />
+                </label>
+                <label>
+                    Due Date:
+                    <input
+                        id="dueDate"
+                        type="datetime-local"  // Use "datetime-local" for matching db.Column(db.DateTime)
+                        name="dueDate"
+                        value={dueDate}
+                        onChange={(e) => setDueDate(e.target.value)}
+                        aria-label="Due Date"
+                    />
                 </label>
                 <br />
                 <button type="submit">Create Task</button>

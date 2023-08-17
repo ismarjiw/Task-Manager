@@ -22,11 +22,24 @@ export default function Tasks() {
     return (
         <div>
             <h1>All Tasks</h1>
-            <ul>
-                {tasks.map(task => (
-                    <li key={task.id}>{task.title} : {task.status}</li>
-                ))}
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {tasks.map((task) => (
+                        <tr key={task.id}>
+                            <td>{task.id}</td>
+                            <td>{task.title}</td>
+                            <td>{task.status}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 }

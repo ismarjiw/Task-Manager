@@ -18,7 +18,7 @@ class Task(db.Model):
     status = db.Column(db.String(20), default='To Do')
 
     def __repr__(self):
-        return f'<Task task_id={self.task_id} title={self.title} description={self.description}>'
+        return f'<Task task_id={self.task_id} title={self.title} description={self.description} due_date={self.due_date}>'
 
 
 def connect_to_db(app, db_name):

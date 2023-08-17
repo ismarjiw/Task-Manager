@@ -4,10 +4,10 @@ from datetime import *
 from sqlalchemy import desc
 
 
-def create_task(title, description):
+def create_task(title, description, due_date):
     """Create and return a new task."""
 
-    task = Task(title=title, description=description)
+    task = Task(title=title, description=description, due_date=due_date)
 
     return task
 

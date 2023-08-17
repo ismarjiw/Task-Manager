@@ -1,6 +1,7 @@
 """Server for task management app."""
 
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
+from datetime import datetime
 from flask_cors import CORS
 from model import connect_to_db, db
 import crud
@@ -40,10 +41,13 @@ def create_task():
     """Create a new task."""
 
     data = request.json
+    print(data)
     title = data.get("title")
     description = data.get("description")
+    due_date_str = data.get("dueDate")
+    due_date_datetime = datetime.strptime(due_date_str, "%Y-%m-%dT%H:%M")
 
-    task = crud.create_task(title=title, description=description)
+    task = crud.create_task(title=title, description=description, due_date=due_date_datetime)
     db.session.add(task)
     db.session.commit()
 
