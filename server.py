@@ -1,18 +1,14 @@
 """Server for task management app."""
 
-# from flask import Flask
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify)
 from flask_cors import CORS
 from model import connect_to_db, db
 import crud
-from jinja2 import StrictUndefined
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
 
 app.secret_key = "dev"
-app.jinja_env.undefined = StrictUndefined
-
 
 @app.route('/')
 def homepage():
@@ -25,16 +21,19 @@ def all_tasks():
     """View all tasks."""
 
     tasks = crud.get_tasks()
+    tasks_json = [{"id": task.task_id, "title": task.title, "status": task.status} for task in tasks]
 
-    return jsonify(tasks)
+    return jsonify(tasks_json)
 
 @app.route("/tasks/<task_id>")
 def show_task(task_id):
     """Show details on a particular task."""
     
     task = crud.get_task_by_id(task_id)
+    print(task)
+    task_json = [{"id": task.task_id, "title": task.title, "description": task.description, "due_date": task.due_date, "status": task.status}]
 
-    return jsonify(task)
+    return jsonify(task_json)
 
 @app.route("/tasks", methods=["POST"])
 def create_task():
@@ -52,4 +51,4 @@ def create_task():
 
 if __name__ == "__main__":
     connect_to_db(app, "tasks")
-    app.run(host="0.0.0.0", port=5173)
+    app.run(host="0.0.0.0", port=5000)

@@ -10,9 +10,9 @@ export default function CreateTask() {
         e.preventDefault();
 
         const taskData = { title, description };
-
+        const baseUrl = "http://localhost:5000"
         try {
-            const response = await fetch('/tasks', {
+            const response = await fetch(`${baseUrl}/tasks`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
