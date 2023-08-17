@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react'
 export default function Tasks() {
     const [tasks, setTasks] = useState([]);
 
-    const baseUrl = "http://localhost:5000"
+    // const baseUrl = "http://localhost:5000"
+    const baseUrl = "https://task-manager-production-46e8.up.railway.app/"
     useEffect(() => {
         async function fetchTasks() {
             try {

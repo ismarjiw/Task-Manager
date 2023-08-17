@@ -11,7 +11,8 @@ export default function CreateTask() {
         e.preventDefault();
 
         const taskData = { title, description, dueDate };
-        const baseUrl = "http://localhost:5000"
+        // const baseUrl = "http://localhost:5000"
+        const baseUrl = "https://task-manager-production-46e8.up.railway.app/"
         try {
             const response = await fetch(`${baseUrl}/tasks`, {
                 method: 'POST',
