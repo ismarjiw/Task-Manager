@@ -1,0 +1,11 @@
+
+# Frontend + Backend routes
+[routes]
+  "/" = { command = "npm install && npm run build && npm run start", memory = "512MB" }
+  "/tasks" = { command = "flask run", memory = "256MB" }
+
+# Configure environment variables for the frontend + backend
+[env]
+    NODE_ENV = "production"
+    FLASK_APP = "server"
+    FLASK_ENV = "production"
