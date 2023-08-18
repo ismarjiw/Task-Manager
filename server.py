@@ -7,9 +7,7 @@ from model import connect_to_db, db
 import crud
 
 app = Flask(__name__)
-# CORS(app, origins=["http://localhost:5173"])
-CORS(app, origins=["https://task-manager-production-46e8.up.railway.app/"])
-
+CORS(app, origins=["http://localhost:5173"])
 
 app.secret_key = "dev"
 
